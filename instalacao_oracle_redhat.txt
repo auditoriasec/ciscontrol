@@ -1,0 +1,61 @@
+##########################################################
+#                                                        #
+# Autor: Rafael Silva                                    #
+# Linkedin: https://www.linkedin.com/in/rafaelsouzasilva #
+# Auditor Sênior | Cyber Security                        #
+#                                                        #
+##########################################################
+
+/usr/sbin/groupadd -g 501 oinstall
+/usr/sbin/groupadd -g 502 dba
+/usr/sbin/groupadd -g 503 oper
+/usr/sbin/useradd -u 502 -g oinstall -G dba,oper oracle
+
+/etc/sysctl.conf
+
+kernel.shmmni = 4096
+kernel.shmmax = 4398046511104
+kernel.shmall = 1073741824
+kernel.sem = 250 32000 100 128
+fs.aio-max-nr = 1048576
+fs.file-max = 6815744
+net.ipv4.ip_local_port_range = 9000 65500
+net.core.rmem_default = 262144
+net.core.rmem_max = 4194304
+net.core.wmem_default = 262144
+net.core.wmem_max = 1048586
+
+/sbin/sysctl -p
+
+/etc/security/limits.conf
+
+oracle   soft   nproc    131072
+oracle   hard   nproc    131072
+oracle   soft   nofile   131072
+oracle   hard   nofile   131072
+oracle   soft   core     unlimited
+oracle   hard   core     unlimited
+oracle   soft   memlock  50000000
+oracle   hard   memlock  50000000
+
+# Oracle Settings
+export TMP=/tmp
+export ORACLE_HOSTNAME=redhat.oracle.com
+export ORACLE_UNQNAME=ORA11G
+export ORACLE_BASE=/ora01/app/oracle
+export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/db_1
+export ORACLE_SID=ORA11G
+PATH=/usr/sbin:$PATH:$ORACLE_HOME/bin
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib;
+export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib;
+alias cdob='cd $ORACLE_BASE'
+alias cdoh='cd $ORACLE_HOME'
+alias tns='cd $ORACLE_HOME/network/admin'
+alias envo='env | grep ORACLE'
+umask 022
+
+# as root
+mkdir -p /u01
+chown -R oracle.oinstall /u01
+
+yum install -y binutils.x86_64 compat-libcap1.x86_64 gcc.x86_64 gcc-c++.x86_64 glibc.i686 glibc.x86_64 glibc-devel.i686 glibc-devel.x86_64 ksh compat-libstdc++-33 libaio.i686 libaio.x86_64 libaio-devel.i686 libaio-devel.x86_64 libgcc.i686 libgcc.x86_64 libstdc++.i686 libstdc++.x86_64 libstdc++-devel.i686 libstdc++-devel.x86_64 libXi.i686 libXi.x86_64 libXtst.i686 libXtst.x86_64 make.x86_64 sysstat.x86_64 zip unzip
