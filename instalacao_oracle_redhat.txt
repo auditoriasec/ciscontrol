@@ -26,8 +26,6 @@ net.core.rmem_max = 4194304
 net.core.wmem_default = 262144
 net.core.wmem_max = 1048586
 
-/sbin/sysctl -p
-
 /etc/security/limits.conf
 
 oracle   soft   nproc    131072
@@ -55,7 +53,6 @@ alias tns='cd $ORACLE_HOME/network/admin'
 alias envo='env | grep ORACLE'
 umask 022
 
-# as root
 mkdir -p /u01
 chown -R oracle.oinstall /u01
 
