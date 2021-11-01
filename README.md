@@ -1,1 +1,1 @@
-Este projeto tem como objetivo auxiliar a avaliação de controles de hardening de tecnologias com base nas definições estabelecidas no CIS Critical Security Controls.
+Este projeto tem como objetivo auxiliar a avaliação de configuração de hardening de tecnologias com base nas definições estabelecidas no CIS Critical Security Controls.Os scripts desenvolvidos são homologados em ambientes similares aos de operação de sistemas e aplicações de grandes empresas de diferentes segmentos.
