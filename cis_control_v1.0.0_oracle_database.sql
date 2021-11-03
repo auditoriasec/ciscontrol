@@ -1,0 +1,169 @@
+/*
+    ########################################################################
+    ####                                                                  ##
+    #### Autor: Rafael Silva                                              ##
+    #### Cargo: Auditor Sênior | Cyber Secyrity                           ##
+    #### Data: 02/11/2021                                                 ##
+    #### Script: Automação | Hardening CIS Security Control | Oracle DB   ##
+    ####                                                                  ##
+    ########################################################################
+*/
+
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.1' AS "CONTROLE"
+,'Ensure AUDIT_SYS_OPERATIONS Is Set to TRUE (Automated)' AS "DESCRIÇÃO"
+,CASE 
+    WHEN UPPER(VALUE) = 'TRUE' THEN 'OK' 
+    ELSE 'NOK' 
+END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME) = 'AUDIT_SYS_OPERATIONS'
+
+/*
+    ########################################################################
+    #### CIS CONTROL - CRITICAL SECURITY CONTROLS - ORACLE DATABASE ########
+    ########################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.2' AS "CONTROLE"
+,'Ensure AUDIT_TRAIL Is Set to DB, XML, OS, DB,EXTENDED, or XML,EXTENDED (Automated)' AS "DESCRIÇÃO"
+,CASE 
+    WHEN UPPER(VALUE) ='DB, XML, OS, DB,EXTENDED' THEN 'OK' 
+    WHEN UPPER(VALUE) = 'XML,EXTENDED (Automated)' THEN 'OK'
+    ELSE 'NOK' END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='AUDIT_TRAIL'
+
+/*
+    ########################################################################
+    #### CIS CONTROL - CRITICAL SECURITY CONTROLS - ORACLE DATABASE ########
+    ########################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.3' AS "CONTROLE"
+,'Ensure GLOBAL_NAMES Is Set to TRUE (Automated)' AS "DESCRIÇÃO"
+,CASE 
+    WHEN UPPER(VALUE) ='TRUE' THEN 'OK' 
+    ELSE 'NOK' END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='GLOBAL_NAMES'
+
+/*
+    ########################################################################
+    #### CIS CONTROL - CRITICAL SECURITY CONTROLS - ORACLE DATABASE ########
+    ########################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.4' AS "CONTROLE"
+,'Ensure O7_DICTIONARY_ACCESSIBILITY Is Set to FALSE (Automated)' AS "DESCRIÇÃO"
+,CASE 
+    WHEN UPPER(VALUE) ='FALSE' THEN 'OK' 
+    ELSE 'NOK' END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='GLOBAL_NAMES'
+
+/*
+    ########################################################################
+    #### CIS CONTROL - CRITICAL SECURITY CONTROLS - ORACLE DATABASE ########
+    ########################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.5' AS "CONTROLE"
+,'Ensure OS_ROLES Is Set to FALSE (Automated)' AS "DESCRIÇÃO"
+,CASE 
+    WHEN UPPER(VALUE) ='FALSE' THEN 'OK' 
+    ELSE 'NOK' END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='OS_ROLES'
+
+/*
+    ########################################################################
+    #### CIS CONTROL - CRITICAL SECURITY CONTROLS - ORACLE DATABASE ########
+    ########################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.6' AS "CONTROLE"
+,'Ensure REMOTE_LISTENER Is Empty (Automated)' AS "DESCRIÇÃO"
+,CASE 
+    WHEN UPPER(VALUE) IS NULL THEN 'OK' 
+    ELSE 'NOK'
+ END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='REMOTE_LISTENER' AND VALUE IS NOT NULL
+
+
+/*
+    ########################################################################
+    #### CIS CONTROL - CRITICAL SECURITY CONTROLS - ORACLE DATABASE ########
+    ########################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.7' AS "CONTROLE"
+,'Ensure REMOTE_LOGIN_PASSWORDFILE Is Set to NONE (Automated)' AS "DESCRIÇÃO"
+,CASE 
+    WHEN UPPER(VALUE) = 'NONE' THEN 'OK' 
+    ELSE 'NOK' 
+ END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='REMOTE_LOGIN_PASSWORDFILE'
+
+/*
+    ########################################################################
+    #### CIS CONTROL - CRITICAL SECURITY CONTROLS - ORACLE DATABASE ########
+    ########################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.8' AS "CONTROLE"
+,'Ensure REMOTE_OS_AUTHENT Is Set to FALSE (Automated)' AS "DESCRIÇÃO"
+,CASE 
+    WHEN UPPER(VALUE) = 'FALSE' THEN 'OK' 
+    ELSE 'NOK' 
+ END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='REMOTE_OS_AUTHENT';
