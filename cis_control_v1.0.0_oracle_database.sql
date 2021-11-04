@@ -9,6 +9,24 @@
     ########################################################################
 */
 
+/*
+    ########################################################################
+    ######################## 2 Oracle Parameter Settings ###################
+    ########################################################################
+*/
+
+/*
+    ########################################################################
+    ########################### 2.1 Listener Settings ######################
+    ########################################################################
+*/
+
+/*
+    ####################################################################################
+    ###########2.1.1 Ensure 'SECURE_CONTROL_' Is Set In 'listener.ora' (Automated) #####
+    ####################################################################################
+*/
+
 SELECT
 'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
@@ -19,9 +37,9 @@ SELECT
 ,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
 ,'TRUE' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
-,CASE 
-    WHEN UPPER(VALUE) = 'TRUE' THEN 'OK' 
-    ELSE 'NOK' 
+,CASE
+    WHEN UPPER(VALUE) = 'TRUE' THEN 'OK'
+    ELSE 'NOK'
 END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
 WHERE UPPER(NAME) = 'AUDIT_SYS_OPERATIONS'
@@ -43,8 +61,8 @@ SELECT
 ,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
 ,'DB, XML, OS, DB,EXTENDED, or XML,EXTENDED' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
-,CASE 
-    WHEN UPPER(VALUE) ='DB, XML, OS, DB,EXTENDED' THEN 'OK' 
+,CASE
+    WHEN UPPER(VALUE) ='DB, XML, OS, DB,EXTENDED' THEN 'OK'
     WHEN UPPER(VALUE) = 'XML,EXTENDED (Automated)' THEN 'OK'
     ELSE 'NOK' END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
@@ -67,8 +85,8 @@ SELECT
 ,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
 ,'TRUE' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
-,CASE 
-    WHEN UPPER(VALUE) ='TRUE' THEN 'OK' 
+,CASE
+    WHEN UPPER(VALUE) ='TRUE' THEN 'OK'
     ELSE 'NOK' END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
 WHERE UPPER(NAME)='GLOBAL_NAMES'
@@ -90,8 +108,8 @@ SELECT
 ,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
 ,'FALSE' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
-,CASE 
-    WHEN UPPER(VALUE) ='FALSE' THEN 'OK' 
+,CASE
+    WHEN UPPER(VALUE) ='FALSE' THEN 'OK'
     ELSE 'NOK' END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
 WHERE UPPER(NAME)='GLOBAL_NAMES'
@@ -113,8 +131,8 @@ SELECT
 ,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
 ,'FALSE' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
-,CASE 
-    WHEN UPPER(VALUE) ='FALSE' THEN 'OK' 
+,CASE
+    WHEN UPPER(VALUE) ='FALSE' THEN 'OK'
     ELSE 'NOK' END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
 WHERE UPPER(NAME)='OS_ROLES'
@@ -136,8 +154,8 @@ SELECT
 ,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
 ,'NULL' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
-,CASE 
-    WHEN UPPER(VALUE) IS NULL THEN 'OK' 
+,CASE
+    WHEN UPPER(VALUE) IS NULL THEN 'OK'
     ELSE 'NOK'
  END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
@@ -161,9 +179,9 @@ SELECT
 ,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
 ,'NONE' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
-,CASE 
-    WHEN UPPER(VALUE) = 'NONE' THEN 'OK' 
-    ELSE 'NOK' 
+,CASE
+    WHEN UPPER(VALUE) = 'NONE' THEN 'OK'
+    ELSE 'NOK'
  END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
 WHERE UPPER(NAME)='REMOTE_LOGIN_PASSWORDFILE'
@@ -185,9 +203,9 @@ SELECT
 ,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
 ,'FALSE' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
-,CASE 
-    WHEN UPPER(VALUE) = 'FALSE' THEN 'OK' 
-    ELSE 'NOK' 
+,CASE
+    WHEN UPPER(VALUE) = 'FALSE' THEN 'OK'
+    ELSE 'NOK'
  END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
 WHERE UPPER(NAME)='REMOTE_OS_AUTHENT'
@@ -210,9 +228,9 @@ SELECT
 ,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
 ,'FALSE' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
-,CASE 
-    WHEN UPPER(VALUE) = 'FALSE' THEN 'OK' 
-    ELSE 'NOK' 
+,CASE
+    WHEN UPPER(VALUE) = 'FALSE' THEN 'OK'
+    ELSE 'NOK'
  END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
 WHERE UPPER(NAME)='REMOTE_OS_ROLES'
@@ -236,7 +254,7 @@ SELECT
 ,'TRUE' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
 ,CASE
-    WHEN UPPER(VALUE) = 'TRUE' THEN 'OK' 
+    WHEN UPPER(VALUE) = 'TRUE' THEN 'OK'
     ELSE 'NOK'
  END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
@@ -260,7 +278,7 @@ SELECT
 ,'<= 3' AS "RESULDADO ESPERADO"
 ,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
 ,CASE
-    WHEN UPPER(VALUE) <= 3 THEN 'OK' 
+    WHEN UPPER(VALUE) <= 3 THEN 'OK'
     ELSE 'NOK'
  END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
@@ -312,4 +330,112 @@ SELECT
     ELSE 'NOK'
  END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
-WHERE UPPER(NAME)='SEC_PROTOCOL_ERROR_TRACE_ACTION';
+WHERE UPPER(NAME)='SEC_PROTOCOL_ERROR_TRACE_ACTION'
+
+/*
+    ############################################################################################
+    #### 2.2.14 Ensure 'SEC_RETURN_SERVER_RELEASE_BANNER' Is Set to 'FALSE' (Automated) ########
+    ############################################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.14' AS "CONTROLE"
+,'Ensure SEC_RETURN_SERVER_RELEASE_BANNER Is Set to FALSE (Automated)' AS "DESCRIÇÃO"
+,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
+,'FALSE' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE
+    WHEN UPPER(VALUE) = 'FALSE' THEN 'OK'
+    ELSE 'NOK'
+ END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='SEC_RETURN_SERVER_RELEASE_BANNER'
+
+/*
+    ############################################################################################
+    ############# 2.2.15 Ensure 'SQL92_SECURITY' Is Set to 'TRUE' (Automated) ##################
+    ############################################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.15' AS "CONTROLE"
+,'Ensure SQL92_SECURITY Is Set to TRUE (Automated)' AS "DESCRIÇÃO"
+,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
+,'TRUE' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE
+    WHEN UPPER(VALUE) = 'TRUE' THEN 'OK'
+    ELSE 'NOK'
+ END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='SQL92_SECURITY'
+
+/*
+    ############################################################################################
+    ############# 2.2.16 Ensure '_trace_files_public' Is Set to 'FALSE' (Automated) ############
+    ############################################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.16' AS "CONTROLE"
+,'Ensure _trace_files_public Is Set to FALSE (Automated)' AS "DESCRIÇÃO"
+,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
+,'TRUE' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE
+    WHEN UPPER(VALUE) = 'TRUE' THEN 'OK'
+    ELSE 'NOK'
+ END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE NAME='_trace_files_public'
+
+/*
+    ############################################################################################
+    ############# 2.2.17 Ensure 'RESOURCE_LIMIT' Is Set to 'TRUE' (Automated) ##################
+    ############################################################################################
+*/
+
+UNION
+SELECT
+'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'2.2' AS "ID"
+,'Database Settings' AS "DOMÍNIO"
+,'2.2.17' AS "CONTROLE"
+,'Ensure RESOURCE_LIMIT Is Set to TRUE (Automated)' AS "DESCRIÇÃO"
+,UPPER(VALUE) AS "RESULTADO IDENTIFICADO"
+,'TRUE' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE
+    WHEN UPPER(VALUE) = 'TRUE' THEN 'OK'
+    ELSE 'NOK'
+ END AS "VALIDACAO"
+FROM V$SYSTEM_PARAMETER
+WHERE UPPER(NAME)='RESOURCE_LIMIT';
+
+/*
+    ############################################################################################
+    ################## 3 Oracle Connection and Login Restrictions ##############################
+    ############################################################################################
+*/
+
+/*
+    ############################################################################################
+    ############# 3.1 Ensure 'FAILED_LOGIN_ATTEMPTS' Is Less than or Equal to '5' ##############
+    ############################################################################################
+*/
