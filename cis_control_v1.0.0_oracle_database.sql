@@ -28,7 +28,10 @@
 */
 
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -52,7 +55,10 @@ WHERE UPPER(NAME) = 'AUDIT_SYS_OPERATIONS'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -76,7 +82,10 @@ WHERE UPPER(NAME)='AUDIT_TRAIL'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -99,7 +108,10 @@ WHERE UPPER(NAME)='GLOBAL_NAMES'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -122,7 +134,10 @@ WHERE UPPER(NAME)='GLOBAL_NAMES'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -145,7 +160,10 @@ WHERE UPPER(NAME)='OS_ROLES'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -170,7 +188,10 @@ WHERE UPPER(NAME)='REMOTE_LISTENER' AND VALUE IS NOT NULL
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -194,7 +215,10 @@ WHERE UPPER(NAME)='REMOTE_LOGIN_PASSWORDFILE'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -219,7 +243,10 @@ WHERE UPPER(NAME)='REMOTE_OS_AUTHENT'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -244,7 +271,10 @@ WHERE UPPER(NAME)='REMOTE_OS_ROLES'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -268,7 +298,10 @@ WHERE UPPER(NAME)='SEC_CASE_SENSITIVE_LOGON'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -292,7 +325,10 @@ WHERE UPPER(NAME)='SEC_MAX_FAILED_LOGIN_ATTEMPTS'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -316,7 +352,10 @@ WHERE UPPER(NAME)='SEC_PROTOCOL_ERROR_FURTHER_ACTION'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -340,7 +379,10 @@ WHERE UPPER(NAME)='SEC_PROTOCOL_ERROR_TRACE_ACTION'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -364,7 +406,10 @@ WHERE UPPER(NAME)='SEC_RETURN_SERVER_RELEASE_BANNER'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -388,7 +433,10 @@ WHERE UPPER(NAME)='SQL92_SECURITY'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -412,7 +460,10 @@ WHERE NAME='_trace_files_public'
 
 UNION
 SELECT
-'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
 ,'ORACLE DATABASE' AS "TECNOLOGIA"
 ,'2.2' AS "ID"
 ,'Database Settings' AS "DOMÍNIO"
@@ -439,3 +490,4 @@ WHERE UPPER(NAME)='RESOURCE_LIMIT';
     ############# 3.1 Ensure 'FAILED_LOGIN_ATTEMPTS' Is Less than or Equal to '5' ##############
     ############################################################################################
 */
+
