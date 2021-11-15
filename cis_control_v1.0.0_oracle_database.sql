@@ -477,7 +477,7 @@ SELECT
     ELSE 'NOK'
  END AS "VALIDACAO"
 FROM V$SYSTEM_PARAMETER
-WHERE UPPER(NAME)='RESOURCE_LIMIT';
+WHERE UPPER(NAME)='RESOURCE_LIMIT'
 
 /*
     ############################################################################################
@@ -491,3 +491,229 @@ WHERE UPPER(NAME)='RESOURCE_LIMIT';
     ############################################################################################
 */
 
+UNION
+SELECT 
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'3' AS "ID"
+,'Oracle Connection and Login Restrictions' AS "DOMÍNIO"
+,'3.1' AS "CONTROLE"
+,'Ensure FAILED_LOGIN_ATTEMPTS Is Less than or Equal to 5' AS "DESCRIÇÃO"
+,P.PROFILE||' -> '|| P.LIMIT AS "RESULTADO IDENTIFICADO"
+,'5' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE WHEN P.LIMIT = '5' THEN 'OK' ELSE 'NOK' END AS "VALIDACAO"
+FROM DBA_PROFILES P
+WHERE TO_NUMBER(DECODE(P.LIMIT,
+'DEFAULT',(SELECT DISTINCT
+DECODE(LIMIT,'UNLIMITED',9999,LIMIT)
+FROM DBA_PROFILES
+WHERE PROFILE='DEFAULT'
+AND RESOURCE_NAME='FAILED_LOGIN_ATTEMPTS'),
+'UNLIMITED','9999',
+P.LIMIT)) > 5
+AND P.RESOURCE_NAME = 'FAILED_LOGIN_ATTEMPTS'
+AND EXISTS ( SELECT 'X' FROM DBA_USERS U WHERE U.PROFILE = P.PROFILE ) 
+
+/*
+    ########################################################################################################
+    ############# 3.2 Ensure 'PASSWORD_LOCK_TIME' Is Greater than or Equal to '1' (Automated) ##############
+    ########################################################################################################
+*/
+
+UNION
+
+SELECT 
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'3' AS "ID"
+,'Oracle Connection and Login Restrictions' AS "DOMÍNIO"
+,'3.2' AS "CONTROLE"
+,'Ensure PASSWORD_LOCK_TIME Is Greater than or Equal to 1 (Automated)' AS "DESCRIÇÃO"
+,P.PROFILE||' -> '|| P.LIMIT AS "RESULTADO IDENTIFICADO"
+,'>= 1' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE WHEN P.LIMIT = '1' THEN 'OK' ELSE 'NOK' END AS "VALIDACAO"
+FROM DBA_PROFILES P
+WHERE TO_NUMBER(DECODE(P.LIMIT,
+'DEFAULT',(SELECT DISTINCT
+DECODE(LIMIT,'UNLIMITED',9999,LIMIT)
+FROM DBA_PROFILES
+WHERE PROFILE='DEFAULT'
+AND RESOURCE_NAME='PASSWORD_LOCK_TIME'),
+'UNLIMITED','9999',
+P.LIMIT)) < 1
+AND P.RESOURCE_NAME = 'PASSWORD_LOCK_TIME'
+AND EXISTS ( SELECT 'X' FROM DBA_USERS U WHERE U.PROFILE = P.PROFILE )
+
+UNION
+
+/*
+    ########################################################################################################
+    ############# 3.3 Ensure 'PASSWORD_LIFE_TIME' Is Less than or Equal to '90'(Automated) #################
+    ########################################################################################################
+*/
+
+SELECT
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'3' AS "ID"
+,'Oracle Connection and Login Restrictions' AS "DOMÍNIO"
+,'3.3' AS "CONTROLE"
+,'Ensure PASSWORD_LIFE_TIME Is Less than or Equal to 90(Automated)' AS "DESCRIÇÃO"
+,P.PROFILE||' -> '|| P.LIMIT AS "RESULTADO IDENTIFICADO"
+,'<= 90' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE WHEN P.LIMIT = '90' THEN 'OK' ELSE 'NOK' END AS "VALIDACAO"
+FROM DBA_PROFILES P
+WHERE TO_NUMBER(DECODE(P.LIMIT,
+'DEFAULT',(SELECT DISTINCT
+DECODE(LIMIT,'UNLIMITED',9999,LIMIT)
+FROM DBA_PROFILES
+WHERE PROFILE='DEFAULT'
+AND RESOURCE_NAME='PASSWORD_LIFE_TIME'),
+'UNLIMITED','9999',P.LIMIT)) > 90 AND
+P.RESOURCE_NAME = 'PASSWORD_LIFE_TIME' AND
+EXISTS ( SELECT 'X' FROM DBA_USERS U WHERE U.PROFILE = P.PROFILE )
+
+/*
+    ############################################################################################################
+    ############# 3.4 Ensure 'PASSWORD_REUSE_MAX' Is Greater than or Equal to '20' (Automated) #################
+    ############################################################################################################
+*/
+
+UNION
+
+SELECT
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'3' AS "ID"
+,'Oracle Connection and Login Restrictions' AS "DOMÍNIO"
+,'3.4' AS "CONTROLE"
+,'Ensure PASSWORD_REUSE_MAX Is Greater than or Equal to 20 (Automated)' AS "DESCRIÇÃO"
+,P.PROFILE||' -> '|| P.LIMIT AS "RESULTADO IDENTIFICADO"
+,'<= 20' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE WHEN P.LIMIT = '90' THEN 'OK' ELSE 'NOK' END AS "VALIDACAO"
+FROM DBA_PROFILES P
+WHERE TO_NUMBER(DECODE(P.LIMIT,
+'DEFAULT',(SELECT DISTINCT
+DECODE(LIMIT,'UNLIMITED',9999,LIMIT)
+FROM DBA_PROFILES
+WHERE PROFILE='DEFAULT'
+AND RESOURCE_NAME='PASSWORD_REUSE_MAX'),
+'UNLIMITED','9999',P.LIMIT)) < 20 AND
+P.RESOURCE_NAME = 'PASSWORD_REUSE_MAX' AND
+EXISTS ( SELECT 'X' FROM DBA_USERS U WHERE U.PROFILE = P.PROFILE )
+
+/*
+    ##############################################################################################################
+    ############# 3.5 Ensure 'PASSWORD_REUSE_TIME' Is Greater than or Equal to '365' (Automated) #################
+    ##############################################################################################################
+*/
+
+UNION
+
+SELECT 
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'3' AS "ID"
+,'Oracle Connection and Login Restrictions' AS "DOMÍNIO"
+,'3.5' AS "CONTROLE"
+,'Ensure PASSWORD_REUSE_TIME Is Greater than or Equal to 365 (Automated)' AS "DESCRIÇÃO"
+,P.PROFILE||' -> '|| P.LIMIT AS "RESULTADO IDENTIFICADO"
+,'>= 365' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE WHEN P.LIMIT = '90' THEN 'OK' ELSE 'NOK' END AS "VALIDACAO"
+FROM DBA_PROFILES P
+WHERE TO_NUMBER(DECODE(P.LIMIT,
+'DEFAULT',(SELECT DISTINCT
+DECODE(LIMIT,'UNLIMITED',9999,LIMIT)
+FROM DBA_PROFILES
+WHERE PROFILE='DEFAULT'
+AND RESOURCE_NAME='PASSWORD_REUSE_TIME'),
+'UNLIMITED','9999',P.LIMIT)) < 365 AND
+P.RESOURCE_NAME = 'PASSWORD_REUSE_TIME' AND
+EXISTS ( SELECT 'X' FROM DBA_USERS U WHERE U.PROFILE = P.PROFILE )
+
+/*
+    ##############################################################################################################
+    ############# 3.6 Ensure 'PASSWORD_GRACE_TIME' Is Less than or Equal to '5'(Automated) #######################
+    ##############################################################################################################
+*/
+
+UNION
+
+SELECT 
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'3' AS "ID"
+,'Oracle Connection and Login Restrictions' AS "DOMÍNIO"
+,'3.6' AS "CONTROLE"
+,'Ensure PASSWORD_GRACE_TIME Is Less than or Equal to 5 (Automated)' AS "DESCRIÇÃO"
+,P.PROFILE||' -> '|| P.LIMIT AS "RESULTADO IDENTIFICADO"
+,'<= 5' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE WHEN P.LIMIT = '5' THEN 'OK' ELSE 'NOK' END AS "VALIDACAO"
+FROM DBA_PROFILES P
+WHERE TO_NUMBER(DECODE(P.LIMIT,
+'DEFAULT',(SELECT DISTINCT
+DECODE(LIMIT,'UNLIMITED',9999,LIMIT)
+FROM DBA_PROFILES
+WHERE PROFILE='DEFAULT'
+AND RESOURCE_NAME='PASSWORD_GRACE_TIME'),
+'UNLIMITED','9999',P.LIMIT)) > 5 AND
+P.RESOURCE_NAME = 'PASSWORD_GRACE_TIME' AND
+EXISTS ( SELECT 'X' FROM DBA_USERS U WHERE U.PROFILE = P.PROFILE )
+
+/*
+    ##############################################################################################################
+    ############# 3.7 Ensure 'PASSWORD_VERIFY_FUNCTION' Is Set for All Profiles (Automated) ######################
+    ##############################################################################################################
+*/
+
+UNION
+
+SELECT
+(select instance_name from v$instance) AS "INSTANCIA"
+,(select host_name from v$instance) AS "HOSTNAME"
+,(select version from v$instance) AS "VERSION"
+,'CIS CRITICAL SECURITY CONTROLS' AS "FRAMEWORK"
+,'ORACLE DATABASE' AS "TECNOLOGIA"
+,'3' AS "ID"
+,'Oracle Connection and Login Restrictions' AS "DOMÍNIO"
+,'3.7' AS "CONTROLE"
+,'Ensure PASSWORD_VERIFY_FUNCTION Is Set for All Profiles (Automated)' AS "DESCRIÇÃO"
+,P.PROFILE||' -> '|| P.LIMIT AS "RESULTADO IDENTIFICADO"
+,'<= 5' AS "RESULDADO ESPERADO"
+,TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') AS "HORARIO"
+,CASE WHEN P.LIMIT != 'NULL' THEN 'OK' ELSE 'NOK' END AS "VALIDACAO"
+FROM DBA_PROFILES P
+WHERE DECODE(P.LIMIT,
+'DEFAULT',(SELECT LIMIT
+FROM DBA_PROFILES
+WHERE PROFILE='DEFAULT'
+AND RESOURCE_NAME = P.RESOURCE_NAME),
+LIMIT) = 'NULL'
+AND P.RESOURCE_NAME = 'PASSWORD_VERIFY_FUNCTION'
+AND EXISTS ( SELECT 'X'
+FROM DBA_USERS U
+WHERE U.PROFILE = P.PROFILE );
